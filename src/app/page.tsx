@@ -1,113 +1,283 @@
-import Image from 'next/image'
+"use client";
+
+import * as React from "react";
+import { useForm } from "react-hook-form";
+import Image from "next/image";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import PersonImage from "public/images/image-man-eating.webp";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import Logo from "public/images/logo.svg";
+import BMISuggestion from "@/components/BMISuggestion";
+import BMILimitation from "@/components/BMILimitation";
+import BMIResultsBox from "@/components/BMIResultsBox";
+import { BMI_SUGGESTIONS, BMI_LIMITATIONS } from "@/lib/constants";
 
 export default function Home() {
+  const [radioOption, setRadioOption] = React.useState<"metric" | "imperial">(
+    "metric"
+  );
+  const { register, setValue, watch, reset } = useForm<Fields>();
+  const fields = watch();
+
+  const handleRadioChange = (
+    event:
+      | React.MouseEvent<HTMLButtonElement>
+      | React.KeyboardEvent<HTMLButtonElement>
+  ) => {
+    if (radioOption === event.currentTarget.value) return;
+    setRadioOption(event.currentTarget.value as "metric" | "imperial");
+    reset();
+  };
+
+  const handleNumberInput = (event: React.FormEvent<HTMLInputElement>) => {
+    const target = event.target as HTMLInputElement;
+    const name = target.name as InputOption;
+    if (target.value.length > 2) {
+      target.value = target.value.slice(0, 2);
+      setValue(name, target.value);
+    }
+  };
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
+    <main className="min-h-screen">
+      <div className="text-center px-6 py-8 bg-gradient-to-tl from-[#D6E6FE] to-[rgba(214,252,254,0.00)] rounded-b-[35px] h-[640px] relative -z-10">
+        <Image
+          src={Logo}
+          alt="Body Mass Index Calculator Logo"
+          className="mx-auto"
+          height={40}
+          width={40}
+        />
+
+        <h1 className="text-5xl text-gunmetal leading-[110%] tracking-tighter font-semibold my-6">
+          Body Mass Index Calculator
+        </h1>
+
+        <p className="text-dark-electric-blue leading-normal">
+          Better understand your weight in relation to your height using our
+          body mass index (BM) calculator. While BMI is not the sole determinant
+          of a healthy weight, it offers a valuable starting point to evaluate
+          your overall health and well-being.
         </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+      </div>
+
+      <Card className="h-[649px] mx-6 mt-[-10rem] flex flex-col">
+        <CardHeader>
+          <CardTitle className="tracking-tighter text-gunmetal">
+            Enter your details below
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="px-6 flex-1 flex flex-col">
+          <RadioGroup
+            defaultValue="metric"
+            className="flex items-start gap-6 mb-6"
           >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+            <div className="flex items-center">
+              <RadioGroupItem
+                className="mr-5"
+                value={"metric"}
+                onClick={handleRadioChange}
+                onKeyDown={handleRadioChange}
+              />
+              <Label className="font-semibold text-base text-gunmetal">
+                Metric
+              </Label>
+            </div>
+            <div className="flex items-center">
+              <RadioGroupItem
+                className="mr-5"
+                value={"imperial"}
+                onClick={handleRadioChange}
+                onKeyDown={handleRadioChange}
+              />
+              <Label className="font-semibold text-base text-gunmetal">
+                Imperial
+              </Label>
+            </div>
+          </RadioGroup>
+
+          <div className="min-h-[212px]">
+            {radioOption === "metric" && (
+              <>
+                <div className="mb-4">
+                  <Label
+                    htmlFor="height-metric"
+                    className="text-xs text-dark-electric-blue mb-2 block"
+                  >
+                    Height
+                  </Label>
+                  <div className="relative">
+                    <Input
+                      className="py-5 px-6 text-2xl h-auto text-gunmetal border-custom-gray rounded-xl"
+                      id="height-metric"
+                      type="number"
+                      placeholder="0"
+                      {...register("heightCm")}
+                    />
+                    <div className="absolute text-2xl text-custom-blue top-5 right-6">
+                      cm
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mb-6">
+                  <Label
+                    htmlFor="weight-metric"
+                    className="text-xs text-dark-electric-blue mb-2 block"
+                  >
+                    Weight
+                  </Label>
+                  <div className="relative">
+                    <Input
+                      className="py-5 px-6 text-2xl h-auto text-gunmetal border-custom-gray rounded-xl"
+                      id="weight-metric"
+                      type="number"
+                      placeholder="0"
+                      {...register("weightKg")}
+                    />
+                    <div className="absolute text-2xl text-custom-blue top-5 right-6">
+                      kg
+                    </div>
+                  </div>
+                </div>
+              </>
+            )}
+
+            {radioOption === "imperial" && (
+              <>
+                <div className="mb-4">
+                  <Label
+                    htmlFor="height-imp"
+                    className="text-xs text-dark-electric-blue mb-2 block"
+                  >
+                    Height
+                  </Label>
+                  <div className="flex items-center space-x-4">
+                    <div className="relative">
+                      <Input
+                        className="py-5 px-6 text-2xl h-auto text-gunmetal border-custom-gray rounded-xl"
+                        id="height-imp"
+                        type="number"
+                        placeholder="0"
+                        maxLength={2}
+                        onInput={handleNumberInput}
+                        {...register("heightFt")}
+                      />
+                      <div className="absolute text-2xl text-custom-blue top-5 right-6">
+                        ft
+                      </div>
+                    </div>
+
+                    <div className="relative">
+                      <Input
+                        className="py-5 px-6 text-2xl h-auto text-gunmetal border-custom-gray rounded-xl"
+                        id="height-imp"
+                        type="number"
+                        placeholder="0"
+                        maxLength={2}
+                        onInput={handleNumberInput}
+                        {...register("heightIn")}
+                      />
+                      <div className="absolute text-2xl text-custom-blue top-5 right-6">
+                        in
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mb-6">
+                  <Label
+                    htmlFor="weight-metric"
+                    className="text-xs text-dark-electric-blue mb-2 block"
+                  >
+                    Weight
+                  </Label>
+                  <div className="flex items-center space-x-4">
+                    <div className="relative">
+                      <Input
+                        className="py-5 px-6 text-2xl h-auto text-gunmetal border-custom-gray rounded-xl"
+                        id="weight-metric"
+                        type="number"
+                        placeholder="0"
+                        maxLength={2}
+                        onInput={handleNumberInput}
+                        {...register("weightSt")}
+                      />
+                      <div className="absolute text-2xl text-custom-blue top-5 right-6">
+                        st
+                      </div>
+                    </div>
+
+                    <div className="relative">
+                      <Input
+                        className="py-5 px-6 text-2xl h-auto text-gunmetal border-custom-gray rounded-xl"
+                        id="weight-metric"
+                        type="number"
+                        placeholder="0"
+                        maxLength={2}
+                        onInput={handleNumberInput}
+                        {...register("weightLb")}
+                      />
+                      <div className="absolute text-2xl text-custom-blue top-5 right-6">
+                        lbs
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </>
+            )}
+          </div>
+
+          <BMIResultsBox fields={fields} unit={radioOption} />
+        </CardContent>
+      </Card>
+
+      <div className="mt-[4.5rem] mb-12">
+        <Image src={PersonImage} alt="Man eating sushi" />
+      </div>
+
+      <div className="mb-[4.5rem] px-6">
+        <h2 className="tracking-tighter text-gunmetal font-semibold text-[2rem] leading-[110%]">
+          What your BMI result means
+        </h2>
+
+        <p className="text-dark-electric-blue mt-8">
+          A BMI range of 18.5 to 24.9 is considered a &apos;healthy
+          weight.&apos; Maintaining a healthy weight may lower your chances of
+          experiencing health issues later on, such as obesity and type 2
+          diabetes. Aim for a nutritious diet with reduced fat and sugar
+          content, incorporating ample fruits and vegetables. Additionally,
+          strive for regular physical activity, ideally about 30 minutes daily
+          for five days a week.
+        </p>
+      </div>
+
+      <div className="block bg-gradient-315 from-[#D6E6FE] to-[rgba(214,252,254,0.00)100%] py-14 pl-5 pr-[1.813rem]">
+        {BMI_SUGGESTIONS.map((suggestion) => (
+          <BMISuggestion key={suggestion.title} {...suggestion} />
+        ))}
+      </div>
+
+      <div className="pt-[4.5rem] pl-[1.188rem] pr-[1.813rem] pb-[6rem]">
+        <h2 className="tracking-tighter text-gunmetal font-semibold text-[2rem] leading-[110%] text-center mb-8">
+          Limitations of BMI
+        </h2>
+
+        <p className="text-dark-electric-blue mb-14 text-center">
+          Although BMI is often a practical indicator of healthy weight, it is
+          not suited for every person. Specific groups should carefully consider
+          their BMI outcomes, and in certain cases, the measurement may not be
+          beneficial to use.
+        </p>
+
+        <div>
+          {BMI_LIMITATIONS.map((limitation) => (
+            <BMILimitation key={limitation.title} {...limitation} />
+          ))}
         </div>
       </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800 hover:dark:bg-opacity-30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore the Next.js 13 playground.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
     </main>
-  )
+  );
 }
