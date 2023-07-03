@@ -13,6 +13,7 @@ import BMISuggestion from "@/components/BMISuggestion";
 import BMILimitation from "@/components/BMILimitation";
 import BMIResultsBox from "@/components/BMIResultsBox";
 import { BMI_SUGGESTIONS, BMI_LIMITATIONS } from "@/lib/constants";
+import { cn } from "@/lib/utils";
 
 export default function Home() {
   const [radioOption, setRadioOption] = React.useState<"metric" | "imperial">(
@@ -52,7 +53,7 @@ export default function Home() {
         />
 
         <h1 className="text-5xl text-gunmetal leading-[110%] tracking-tighter font-semibold my-6">
-          Body Mass Index Calculator
+          Body Mass <br /> Index Calculator
         </h1>
 
         <p className="text-dark-electric-blue leading-normal">
@@ -63,18 +64,18 @@ export default function Home() {
         </p>
       </div>
 
-      <Card className="h-[649px] mx-6 mt-[-10rem] flex flex-col">
+      <Card className="h-[649px] mx-6 mt-[-10rem] sm:mt-[-19rem] flex flex-col">
         <CardHeader>
-          <CardTitle className="tracking-tighter text-gunmetal">
+          <CardTitle className="tracking-tighter text-gunmetal sm:p-2">
             Enter your details below
           </CardTitle>
         </CardHeader>
-        <CardContent className="px-6 flex-1 flex flex-col">
+        <CardContent className="px-6 sm:px-8 sm:pb-8 flex-1 flex flex-col">
           <RadioGroup
             defaultValue="metric"
-            className="flex items-start gap-6 mb-6"
+            className="flex items-start gap-6 mb-6 sm:mb-8"
           >
-            <div className="flex items-center">
+            <div className="flex items-center sm:flex-1">
               <RadioGroupItem
                 className="mr-5"
                 value={"metric"}
@@ -85,7 +86,7 @@ export default function Home() {
                 Metric
               </Label>
             </div>
-            <div className="flex items-center">
+            <div className="flex items-center sm:flex-1">
               <RadioGroupItem
                 className="mr-5"
                 value={"imperial"}
@@ -98,10 +99,15 @@ export default function Home() {
             </div>
           </RadioGroup>
 
-          <div className="min-h-[212px]">
+          <div
+            className={cn(
+              "min-h-[212px] sm:min-h-0",
+              radioOption === "metric" && "sm:flex sm:gap-6 sm:mb-8"
+            )}
+          >
             {radioOption === "metric" && (
               <>
-                <div className="mb-4">
+                <div className="mb-4 sm:mb-0">
                   <Label
                     htmlFor="height-metric"
                     className="text-xs text-dark-electric-blue mb-2 block"
@@ -122,7 +128,7 @@ export default function Home() {
                   </div>
                 </div>
 
-                <div className="mb-6">
+                <div className="mb-6 sm:mb-0">
                   <Label
                     htmlFor="weight-metric"
                     className="text-xs text-dark-electric-blue mb-2 block"
@@ -147,7 +153,7 @@ export default function Home() {
 
             {radioOption === "imperial" && (
               <>
-                <div className="mb-4">
+                <div className="mb-4 sm:mb-6">
                   <Label
                     htmlFor="height-imp"
                     className="text-xs text-dark-electric-blue mb-2 block"
@@ -187,7 +193,7 @@ export default function Home() {
                   </div>
                 </div>
 
-                <div className="mb-6">
+                <div className="mb-6 sm:mb-8">
                   <Label
                     htmlFor="weight-metric"
                     className="text-xs text-dark-electric-blue mb-2 block"
@@ -234,33 +240,35 @@ export default function Home() {
         </CardContent>
       </Card>
 
-      <div className="mt-[4.5rem] mb-12">
-        <Image src={PersonImage} alt="Man eating sushi" />
+      <div className="sm:flex sm:items-center relative sm:flex-row-reverse w-full sm:py-24 sm:pr-11">
+        <div className="mt-[4.5rem] mb-12 sm:m-0 sm:w-[360px] sm:-h-[411px] sm:absolute sm:-left-16">
+          <Image src={PersonImage} alt="Man eating sushi" />
+        </div>
+
+        <div className="mb-[4.5rem] px-6 sm:m-0 sm:basis-1/2 sm:pb-4">
+          <h2 className="tracking-tighter text-gunmetal font-semibold text-[2rem] leading-[110%]">
+            What your BMI result means
+          </h2>
+
+          <p className="text-dark-electric-blue mt-8">
+            A BMI range of 18.5 to 24.9 is considered a &apos;healthy
+            weight.&apos; Maintaining a healthy weight may lower your chances of
+            experiencing health issues later on, such as obesity and type 2
+            diabetes. Aim for a nutritious diet with reduced fat and sugar
+            content, incorporating ample fruits and vegetables. Additionally,
+            strive for regular physical activity, ideally about 30 minutes daily
+            for five days a week.
+          </p>
+        </div>
       </div>
 
-      <div className="mb-[4.5rem] px-6">
-        <h2 className="tracking-tighter text-gunmetal font-semibold text-[2rem] leading-[110%]">
-          What your BMI result means
-        </h2>
-
-        <p className="text-dark-electric-blue mt-8">
-          A BMI range of 18.5 to 24.9 is considered a &apos;healthy
-          weight.&apos; Maintaining a healthy weight may lower your chances of
-          experiencing health issues later on, such as obesity and type 2
-          diabetes. Aim for a nutritious diet with reduced fat and sugar
-          content, incorporating ample fruits and vegetables. Additionally,
-          strive for regular physical activity, ideally about 30 minutes daily
-          for five days a week.
-        </p>
-      </div>
-
-      <div className="block bg-gradient-315 from-[#D6E6FE] to-[rgba(214,252,254,0.00)100%] py-14 pl-5 pr-[1.813rem]">
+      <div className="block bg-gradient-315 from-[#D6E6FE] to-[rgba(214,252,254,0.00)100%] py-14 sm:py-[3.75rem] pl-5 sm:pl-[2.438rem] pr-[1.813rem] sm:pr-[2.688rem]">
         {BMI_SUGGESTIONS.map((suggestion) => (
           <BMISuggestion key={suggestion.title} {...suggestion} />
         ))}
       </div>
 
-      <div className="pt-[4.5rem] pl-[1.188rem] pr-[1.813rem] pb-[6rem]">
+      <div className="pt-[4.5rem] pl-[1.188rem] pr-[1.813rem] pb-[6rem] sm:pl-[2.438rem] sm:pr-[2.688rem]">
         <h2 className="tracking-tighter text-gunmetal font-semibold text-[2rem] leading-[110%] text-center mb-8">
           Limitations of BMI
         </h2>
@@ -272,7 +280,7 @@ export default function Home() {
           beneficial to use.
         </p>
 
-        <div>
+        <div className="sm:flex sm:items-center sm:justify-center sm:flex-wrap sm:gap-4 sm:[&>*:nth-child(3)]:h-[256px] sm:[&>*:nth-child(4)]:h-[256px]">
           {BMI_LIMITATIONS.map((limitation) => (
             <BMILimitation key={limitation.title} {...limitation} />
           ))}

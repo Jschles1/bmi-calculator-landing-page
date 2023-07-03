@@ -1,3 +1,5 @@
+import { cn } from "@/lib/utils";
+
 export default function BMIResultsBox({
   fields,
   unit,
@@ -20,7 +22,7 @@ export default function BMIResultsBox({
   if (!hasMetricFields && !hasImperialFields) {
     content = (
       <>
-        <div className="tracking-tighter font-semibold text-2xl mb-6">
+        <div className="tracking-tighter font-semibold text-2xl mb-4">
           Welcome!
         </div>
         <p className="text-sm">
@@ -55,7 +57,7 @@ export default function BMIResultsBox({
 
     const underweight = Number(bmiValue) < 18.5;
     const healthy = Number(bmiValue) >= 18.5 && Number(bmiValue) <= 24.9;
-    const overweight = Number(bmiValue) >= 25 && Number(bmiValue) <= 29.9;
+    const overweight = Number(bmiValue) >= 25;
 
     let resultString = "";
 
@@ -68,19 +70,26 @@ export default function BMIResultsBox({
     }
 
     content = (
-      <>
-        <p className="font-bold">Your BMI is...</p>
-        <p className="mt-4 font-bold text-5xl mb-6">{bmiValue}</p>
-        <p className="text-sm">
+      <div className="sm:flex sm:items-center sm:justify-between">
+        <div className="sm:basis-2/4">
+          <p className="font-bold">Your BMI is...</p>
+          <p className="mt-4 font-bold text-5xl mb-6">{bmiValue}</p>
+        </div>
+        <p className="text-sm sm:basis-2/4">
           {resultString} Your ideal weight is between{" "}
           <span className="font-bold">{idealWeightString}</span>.
         </p>
-      </>
+      </div>
     );
   }
 
   return (
-    <div className="bg-gradient-to-r from-[#345FF6] to-[#587DFF] text-custom-white p-8 rounded-xl flex-1">
+    <div
+      className={cn(
+        "bg-gradient-to-r from-[#345FF6] to-[#587DFF] text-custom-white p-8 rounded-xl flex-1 sm:rounded-r-full",
+        !!idealWeightString && "sm:flex sm:items-center sm:justify-center"
+      )}
+    >
       {content}
     </div>
   );

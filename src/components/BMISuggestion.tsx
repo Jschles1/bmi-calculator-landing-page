@@ -10,10 +10,12 @@ export default function BMISuggestion({
   description: string;
 }) {
   return (
-    <div className="mb-10 last:mb-0">
-      <Image className="mb-8" src={icon} alt={`${title} Icon`} />
-      <p className="font-semibold text-2xl mb-6 text-gunmetal">{title}</p>
-      <p className="text-dark-electric-blue">{description}</p>
+    <div className="mb-10 last:mb-0 sm:flex sm:items-center">
+      <Image className="mb-8 sm:mb-0" src={icon} alt={`${title} Icon`} />
+      <div className="sm:ml-10">
+        <p className="font-semibold text-2xl mb-6 text-gunmetal">{title}</p>
+        <p className="text-dark-electric-blue">{description}</p>
+      </div>
     </div>
   );
 }
