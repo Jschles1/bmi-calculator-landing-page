@@ -89,6 +89,7 @@ export default function Home() {
                   onClick={handleRadioChange}
                   onKeyDown={handleRadioChange}
                   aria-label="metric"
+                  id="metric"
                 />
                 <Label
                   className="font-semibold text-base text-gunmetal"
@@ -104,6 +105,7 @@ export default function Home() {
                   onClick={handleRadioChange}
                   onKeyDown={handleRadioChange}
                   aria-label="imperial"
+                  id="imperial"
                 />
                 <Label
                   className="font-semibold text-base text-gunmetal"
