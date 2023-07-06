@@ -88,11 +88,11 @@ export default function Home() {
                   value={"metric"}
                   onClick={handleRadioChange}
                   onKeyDown={handleRadioChange}
-                  id="metric-option"
+                  aria-labelledby="metric"
                 />
                 <Label
                   className="font-semibold text-base text-gunmetal"
-                  htmlFor="metric-option"
+                  aria-label="metric"
                 >
                   Metric
                 </Label>
@@ -103,11 +103,11 @@ export default function Home() {
                   value={"imperial"}
                   onClick={handleRadioChange}
                   onKeyDown={handleRadioChange}
-                  id="imperial-option"
+                  aria-labelledby="imperial"
                 />
                 <Label
                   className="font-semibold text-base text-gunmetal"
-                  htmlFor="imperial-option"
+                  aria-label="imperial"
                 >
                   Imperial
                 </Label>
