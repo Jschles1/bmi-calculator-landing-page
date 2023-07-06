@@ -38,7 +38,7 @@ Users should be able to:
 ### Links
 
 - Solution URL: [https://github.com/Jschles1/bmi-calculator-landing-page](https://github.com/Jschles1/bmi-calculator-landing-page)
-- Live Site URL: [Add live site URL here](https://bmi-calculator-landing-page.vercel.app/)
+- Live Site URL: [https://bmi-calculator-landing-page.vercel.app/](https://bmi-calculator-landing-page.vercel.app/)
 
 ## My process
 
