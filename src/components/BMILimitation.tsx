@@ -11,7 +11,7 @@ export default function BMILimitation({
   description: string;
 }) {
   return (
-    <Card className="mb-4 last:mb-0 sm:mb-0 sm:basis-[48%] sm:h-[232px]">
+    <Card className="mb-4 last:mb-0 sm:mb-0 sm:basis-[48%] sm:h-[232px] lg:h-auto lg:w-[365px] lg:basis-auto">
       <CardHeader>
         <CardTitle className="flex items-center">
           <Image className="mr-4" src={icon} alt={`${title} Icon`} />

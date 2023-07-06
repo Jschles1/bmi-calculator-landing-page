@@ -73,7 +73,7 @@ export default function BMIResultsBox({
       <div className="sm:flex sm:items-center sm:justify-between">
         <div className="sm:basis-2/4">
           <p className="font-bold">Your BMI is...</p>
-          <p className="mt-4 font-bold text-5xl mb-6">{bmiValue}</p>
+          <p className="mt-4 font-bold text-5xl mb-6 lg:mb-0">{bmiValue}</p>
         </div>
         <p className="text-sm sm:basis-2/4">
           {resultString} Your ideal weight is between{" "}

@@ -60,3 +60,7 @@ export const BMI_LIMITATIONS = [
       "Certain health concerns may affect individuals of some Black and Asian origins at lower BMIs than others. To learn more, it is advised to discuss this with your GP or practice nurse.",
   },
 ];
+
+export const DESKTOP_BMI_LIMITS_FIRST_ROW = BMI_LIMITATIONS[0];
+export const DESKTOP_BMI_LIMITS_SECOND_ROW = BMI_LIMITATIONS.slice(1, 3);
+export const DESKTOP_BMI_LIMITS_THIRD_ROW = BMI_LIMITATIONS.slice(3, 5);
