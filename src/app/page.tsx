@@ -5,12 +5,8 @@ import { useForm } from "react-hook-form";
 import Image from "next/image";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import PersonImage from "public/images/image-man-eating.webp";
-import LeftCurvedLineIcon from "public/images/pattern-curved-line-left.svg";
-import RightCurvedLineIcon from "public/images/pattern-curved-line-right.svg";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import Logo from "public/images/logo.svg";
 import BMISuggestion from "@/components/BMISuggestion";
 import BMILimitation from "@/components/BMILimitation";
 import BMIResultsBox from "@/components/BMIResultsBox";
@@ -22,6 +18,10 @@ import {
   DESKTOP_BMI_LIMITS_THIRD_ROW,
 } from "@/lib/constants";
 import { cn } from "@/lib/utils";
+import Logo from "public/images/logo.svg";
+import PersonImage from "public/images/image-man-eating.webp";
+import LeftCurvedLineIcon from "public/images/pattern-curved-line-left.svg";
+import RightCurvedLineIcon from "public/images/pattern-curved-line-right.svg";
 
 export default function Home() {
   const [radioOption, setRadioOption] = React.useState<"metric" | "imperial">(

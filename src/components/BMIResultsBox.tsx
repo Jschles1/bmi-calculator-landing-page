@@ -25,7 +25,7 @@ export default function BMIResultsBox({
         <div className="tracking-tighter font-semibold text-2xl mb-4">
           Welcome!
         </div>
-        <p className="text-sm">
+        <p className="text-normal">
           Enter your height and weight and you&apos;ll see your BMI result here.
         </p>
       </>
@@ -75,7 +75,7 @@ export default function BMIResultsBox({
           <p className="font-bold">Your BMI is...</p>
           <p className="mt-4 font-bold text-5xl mb-6 lg:mb-0">{bmiValue}</p>
         </div>
-        <p className="text-sm sm:basis-2/4">
+        <p className="text-normal sm:basis-2/4">
           {resultString} Your ideal weight is between{" "}
           <span className="font-bold">{idealWeightString}</span>.
         </p>
