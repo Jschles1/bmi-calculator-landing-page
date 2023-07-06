@@ -129,7 +129,7 @@ export default function Home() {
                         placeholder="0"
                         {...register("heightCm")}
                       />
-                      <div className="absolute text-2xl text-custom-blue top-5 right-6">
+                      <div className="absolute text-2xl text-custom-blue top-5 right-6 bg-custom-white h-1/2">
                         cm
                       </div>
                     </div>
@@ -150,7 +150,7 @@ export default function Home() {
                         placeholder="0"
                         {...register("weightKg")}
                       />
-                      <div className="absolute text-2xl text-custom-blue top-5 right-6">
+                      <div className="absolute text-2xl text-custom-blue top-5 right-6 bg-custom-white h-1/2">
                         kg
                       </div>
                     </div>
@@ -178,7 +178,7 @@ export default function Home() {
                           onInput={handleNumberInput}
                           {...register("heightFt")}
                         />
-                        <div className="absolute text-2xl text-custom-blue top-5 right-6">
+                        <div className="absolute text-2xl text-custom-blue top-5 right-6 bg-custom-white h-1/2">
                           ft
                         </div>
                       </div>
@@ -193,7 +193,7 @@ export default function Home() {
                           onInput={handleNumberInput}
                           {...register("heightIn")}
                         />
-                        <div className="absolute text-2xl text-custom-blue top-5 right-6">
+                        <div className="absolute text-2xl text-custom-blue top-5 right-6 bg-custom-white h-1/2">
                           in
                         </div>
                       </div>
@@ -218,7 +218,7 @@ export default function Home() {
                           onInput={handleNumberInput}
                           {...register("weightSt")}
                         />
-                        <div className="absolute text-2xl text-custom-blue top-5 right-6">
+                        <div className="absolute text-2xl text-custom-blue top-5 right-6 bg-custom-white h-1/2">
                           st
                         </div>
                       </div>
@@ -233,7 +233,7 @@ export default function Home() {
                           onInput={handleNumberInput}
                           {...register("weightLb")}
                         />
-                        <div className="absolute text-2xl text-custom-blue top-5 right-6">
+                        <div className="absolute text-2xl text-custom-blue top-5 right-6 bg-custom-white h-1/2">
                           lbs
                         </div>
                       </div>
