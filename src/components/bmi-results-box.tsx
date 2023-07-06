@@ -86,8 +86,9 @@ export default function BMIResultsBox({
   return (
     <div
       className={cn(
-        "bg-gradient-to-r from-[#345FF6] to-[#587DFF] text-custom-white p-8 rounded-xl flex-1 sm:rounded-r-full",
-        !!idealWeightString && "sm:flex sm:items-center sm:justify-center"
+        "bg-gradient-to-r from-[#345FF6] to-[#587DFF] text-custom-white p-8 rounded-xl flex-1 sm:rounded-r-[10rem] sm:rounded-l-2xl lg:rounded-r-[6rem]",
+        !!idealWeightString &&
+          "sm:flex sm:items-center sm:justify-center sm:self-stretch"
       )}
     >
       {content}
