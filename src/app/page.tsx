@@ -7,9 +7,9 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import BMISuggestion from "@/components/BMISuggestion";
-import BMILimitation from "@/components/BMILimitation";
-import BMIResultsBox from "@/components/BMIResultsBox";
+import BMISuggestion from "@/components/bmi-suggestion";
+import BMILimitation from "@/components/bmi-limitation";
+import BMIResultsBox from "@/components/bmi-results-box";
 import {
   BMI_SUGGESTIONS,
   BMI_LIMITATIONS,
