@@ -29,11 +29,11 @@ Users should be able to:
 
 ### Screenshots
 
-![Mobile](./projects/bmi-calc/public/screenshots/mobile.png)
+![Mobile](./public/screenshots/mobile.png)
 
-![Tablet](./projects/bmi-calc/public/screenshots/tablet.png)
+![Tablet](./public/screenshots/tablet.png)
 
-![Desktop](./projects/bmi-calc/public/screenshots/desktop.png)
+![Desktop](./public/screenshots/desktop.png)
 
 ### Links
 
